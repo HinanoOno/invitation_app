@@ -57,7 +57,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </head>
 
-<body class="min-h-screen flex flex-col  md:min-h-0 ">
+<body class="min-h-screen flex flex-col  md:min-h-0 md:mb-12">
   <?php require("../components/header.php")?>
 
   <div>
@@ -70,11 +70,11 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
       }
     </style>
 
-    <div class="antialiased sans-serif bg-gray-100 h-screen">
+    <div class="antialiased sans-serif bg-gray-100 h-screen md:mb-48 md:min-h-0">
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-        <div class=" mx-auto py-2 md:py-24 w-full mb-3">
+        <div class=" mx-auto py-4 md:py-8 w-full mb-3">
 
-          <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive">
+          <div class="font-bold text-gray-800 text-xl flex justify-center font-cursive mb-4 md:text-2xl lg:text-3xl xl:text-4xl md:mt-4 md:mb-12">
             When you coming?
           </div>
 
@@ -399,7 +399,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
           }
         }
-      </script>;
+      </script>
     </div>
     <?php require("../components/footer.php") ?>
 
