@@ -1,6 +1,7 @@
 <?php
 require_once('./assets/php/dbconnect.php');
 session_start();
+print_r($_SESSION);
 //今いる人をとってくる処理
 try {
   $dbh->beginTransaction();
