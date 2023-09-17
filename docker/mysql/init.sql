@@ -24,7 +24,7 @@ CREATE TABLE user_details (
     discord_user_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id) VALUES (1,'小野','慶應','理工',3,'①','1231'),(2,'kazu','慶應','経済',3.0,'①','1231'),(3,'taiki','慶應','理工',3,'①','1231')
+INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id) VALUES (1,'小野','慶應','理工',3,'①','1231'),(2,'kazu','慶應','経済',3,'①','1231'),(3,'taiki','慶應','理工',3,'①','1231')
 ;
 
 DROP TABLE IF EXISTS plans;
