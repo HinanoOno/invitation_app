@@ -59,9 +59,11 @@ try {
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
   </div>
+
   <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive">
     Today's Plan
   </div>
+
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control mb-1">
       <label class="label cursor-pointer">
