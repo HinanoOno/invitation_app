@@ -1,3 +1,35 @@
+<?php
+require_once('./assets/php/dbconnect.php');
+session_start();
+//今いる人をとってくる処理
+try {
+  $dbh->beginTransaction();
+  $sql = "SELECT
+    ud.name AS user_name,
+    CAST(ud.grade AS UNSIGNED) AS user_grade,
+    ud.posse AS user_posse,
+    GROUP_CONCAT(p.name) AS plans
+  FROM
+    user_details ud
+  INNER JOIN
+    userDetail_plan udp ON ud.id = udp.userDetail_id
+  INNER JOIN
+    plans p ON udp.plan_id = p.id
+  WHERE
+    udp.status = 1
+  GROUP BY
+    ud.name, ud.grade, ud.posse;
+  ";
+  $stmt = $dbh->prepare($sql);
+  $stmt->execute();
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $dbh->commit();
+    
+} catch (PDOException $e) {
+  $dbh->rollBack();
+  echo "データベースエラー: " . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -24,5 +56,29 @@
     <button type="submit" name='status' value='入室'>入室</button>
     <button type="submit"name='status' value='退室'>退室</button>    
   </form>
+
+  <h1>いる人リスト</h1>
+  <table class='table'>
+    <tr>
+      <th>POSSE</th>
+      <th>Grade</th>
+      <th>User Name</th>
+      <th>Plans</th>
+    </tr>
+    <?php foreach($results as $result){?>
+      <tr>
+        <td><?=$result['user_posse']?></td>
+        <td><?=$result['user_grade']?></td>
+        <td><?=$result['user_name']?></td>
+        <td>
+          <?php $plans = explode(',', $result['plans']);
+          foreach($plans as $plan){?>
+          <?=$plan?><br>
+          <?php }?>
+        </td>
+      </tr>
+    <?php }?>
+  </table>
+
 </body>
 </html>
