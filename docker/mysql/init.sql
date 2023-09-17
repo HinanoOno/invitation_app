@@ -10,7 +10,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
-INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.');
+INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'), ('k.keio1256@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.') ,('taiki@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.');
 
 DROP TABLE IF EXISTS user_details;
 CREATE TABLE user_details (
@@ -25,7 +25,8 @@ CREATE TABLE user_details (
     image VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id,image) VALUES (1,'小野','慶應','理工',3,'①','1231','img1.jpg');
+INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id,image) VALUES (1,'小野','慶應','理工',3,'①','1231','img1.jpg'),(2,'kazu','慶應','経済',3,'①','1231', 'kazu.JPG'),(3,'taiki','慶應','理工',3,'①','1231', 'taiki.jpg')
+;
 
 DROP TABLE IF EXISTS plans;
 CREATE TABLE plans (
