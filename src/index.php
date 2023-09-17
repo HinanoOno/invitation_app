@@ -7,6 +7,7 @@
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>
+  <?php require("./components/header.php")?>
   <form method="POST" action='./assets/php/index.php'>
     <input type="checkbox" id="plan1" name="plans[]" value="1">
     <label for="plan1">業務</label><br>
