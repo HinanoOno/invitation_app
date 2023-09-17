@@ -26,7 +26,7 @@
 .title span {
   display: block;
   transform: translate(0, 105%);
-  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.7s;
+  transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.8s;
 }
 
 .title.-visible span {
@@ -34,11 +34,11 @@
 }
 
 .title span:nth-child(2) {
-  transition-delay: 0.06s;
+  transition-delay: 0.07s;
 }
 .title span:nth-child(3) {
-  transition-delay: 0.12s;
+  transition-delay: 0.14s;
 }
 .title span:nth-child(4) {
-  transition-delay: 0.18s;
+  transition-delay: 0.21s;
 }
