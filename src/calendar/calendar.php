@@ -84,9 +84,10 @@ echo '</pre>';
               </div>
               <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  ">
                 <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
-                <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦モク、横モク、MU</span>
+                <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦・横モク</span>
                 <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
-                <span class="border-yellow-200 bg-yellow-200 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">その他</span>
+                <span class="border-yellow-200 bg-yellow-200 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
+                <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">その他</span>
               </div>
               <div class="border rounded-lg px-1" style="padding-top: 2px;">
                 <button type="button" class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
@@ -125,8 +126,9 @@ echo '</pre>';
                       <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
                         <div class="py-1 rounded-lg mt-1 overflow-hidden border" :class="{
 												'border-blue-200 text-blue-800 bg-blue-100': event.event_color === '業務',
-												'border-red-200 text-red-800 bg-red-100': event.event_color === '縦モク、横モク、MU',
-												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_color === 'その他',
+												'border-red-200 text-red-800 bg-red-100': event.event_color === '縦・横モク',
+												'border-gray-200 text-gray-800 bg-gray-100': event.event_color === 'その他',
+                        'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_color === 'MU',
 												'border-green-200 text-green-800 bg-green-100': event.event_color === 'カリキュラム',
 											}">
                           <p x-text="event.event_theme" class="text-sm truncate leading-tight"></p>
@@ -296,11 +298,11 @@ echo '</pre>';
 
             themes: [{
                 value: "1",
-                label: "jober/本部"
+                label: "業務"
               },
               {
                 value: "2",
-                label: "縦モク/横モク/MU"
+                label: "縦・横モク"
               },
               {
                 value: "3",
@@ -308,6 +310,10 @@ echo '</pre>';
               },
               {
                 value: "4",
+                label: "MU"
+              },
+              {
+                value: "5",
                 label: "その他"
               },
             ],

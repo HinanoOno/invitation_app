@@ -21,67 +21,69 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $request_date = date('Y/m/d (', $timestamp) . $dayOfWeekJapanese . ')';
 
   //userIdを取得
-  foreach ($_POST['name'] as $request_name) {
-    try {
-      $dbh->beginTransaction();
-      $sql = "SELECT * FROM user_details WHERE name = :name";
-      $stmt = $dbh->prepare($sql);
-      $stmt->execute([
-        ":name" => $request_name
-      ]);
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      $sql = "SELECT * FROM user_details WHERE id = :id";
-      $stmt = $dbh->prepare($sql);
-      $stmt->execute([
-        ":id" => $_SESSION['id']
-      ]);
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  if(isset($_POST['name'])){
+    foreach ($_POST['name'] as $request_name) {
+      try {
+        $dbh->beginTransaction();
+        $sql = "SELECT * FROM user_details WHERE name = :name";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([
+          ":name" => $request_name
+        ]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM user_details WHERE id = :id";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([
+          ":id" => $_SESSION['id']
+        ]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-      //discord 通知
-      $userId = $row['discord_user_id'];
+        //discord 通知
+        $userId = $row['discord_user_id'];
+            
+        $message = $user['name'].'さんから'.$request_date.'にHarborsへのお誘いがきました。こちらから登録してください。 http://localhost:8080/calendar/calendar.php';
+
+        $apiUrl = "https://discord.com/api/v10/users/@me/channels";
+
+        $headers = [
+          'Authorization: Bot ' . $botToken,
+          'Content-Type: application/json',
+        ];
+            
+        $data = json_encode([
+          'recipient_id' => $userId,
+        ]);
+
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+        $responseData = json_decode($response, true);
+        $channelId = $responseData['id'];
           
-      $message = $user['name'].'さんから'.$request_date.'にHarborsへのお誘いがきました。こちらから登録してください。 http://localhost:8080/calendar/calendar.php';
+        $sendMessageUrl = "https://discord.com/api/v10/channels/{$channelId}/messages";
+        $messageData = json_encode([
+          'content' => $message,
+        ]);
 
-      $apiUrl = "https://discord.com/api/v10/users/@me/channels";
-
-      $headers = [
-        'Authorization: Bot ' . $botToken,
-        'Content-Type: application/json',
-      ];
-          
-      $data = json_encode([
-        'recipient_id' => $userId,
-      ]);
-
-      $ch = curl_init($apiUrl);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-      $response = curl_exec($ch);
-
-      curl_close($ch);
-      $responseData = json_decode($response, true);
-      $channelId = $responseData['id'];
-        
-      $sendMessageUrl = "https://discord.com/api/v10/channels/{$channelId}/messages";
-      $messageData = json_encode([
-        'content' => $message,
-      ]);
-
-      $ch = curl_init($sendMessageUrl);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $messageData);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      $response = curl_exec($ch);
-      curl_close($ch);
-      $dbh->commit();
-    } catch (PDOException $e) {
-      $dbh->rollBack();
-      echo "データベースエラー: " . $e->getMessage();
+        $ch = curl_init($sendMessageUrl);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $messageData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $dbh->commit();
+      } catch (PDOException $e) {
+        $dbh->rollBack();
+        echo "データベースエラー: " . $e->getMessage();
+      }
     }
   }
 
