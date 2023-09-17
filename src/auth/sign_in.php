@@ -27,7 +27,7 @@
       </div>
 
       <div class="z-0 w-full mb-6 group">
-      <a href="http://localhost:8080/auth/sign_up.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">新規登録</a>
+      <a href="../auth/sign_up.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">新規登録</a>
       </div>
 
       <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ログイン</button>
