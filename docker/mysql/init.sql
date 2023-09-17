@@ -34,7 +34,7 @@ CREATE TABLE plans (
     name VARCHAR(255) NOT NULL
 );
 
-INSERT INTO plans (name) VALUES ('業務'), ('縦モク/横モク/MU'), ('カリキュラム'), ('その他');
+INSERT INTO plans (name) VALUES ('業務'), ('縦・横モク'), ('カリキュラム'), ('MU'), ('その他');
 
 DROP TABLE IF EXISTS calendars;
 CREATE TABLE calendars (
