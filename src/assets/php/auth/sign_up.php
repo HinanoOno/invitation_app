@@ -3,7 +3,7 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  require('../assets/php/dbconnect.php');
+  require('./../dbconnect.php');
   $stmt = $dbh->prepare("INSERT INTO users(email, password) VALUES( :email, :password)");
 
   $success=$stmt->execute([
@@ -16,8 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if ($success) {
     // ユーザーのメール、パスワードが適切に登録された場合の処理
     $lastInsertId = $dbh->lastInsertId();
+
+    $image_name = uniqid(mt_rand(), true) . '.' . substr(strrchr($_FILES['image']['name'], '.'), 1);
+    $image_path = dirname(__FILE__) . './../../../assets/img/' . $image_name;
+    move_uploaded_file(
+      $_FILES['image']['tmp_name'], 
+      $image_path
+    );
     
-    $stmt = $dbh->prepare("INSERT INTO user_details(name, user_id, university, faculty, grade, posse, discord_user_id) VALUES(:name, :user_id, :university, :faculty, :grade, :posse, :discord_user_id)");
+    $stmt = $dbh->prepare("INSERT INTO user_details(name, user_id, university, faculty, grade, posse, discord_user_id,image) VALUES(:name, :user_id, :university, :faculty, :grade, :posse, :discord_user_id,:image)");
     
     $success = $stmt->execute([
         ":name" => $_POST["name"],
@@ -27,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ":grade" => $_POST["grade"],
         ":posse" => $_POST["posse"],
         ":discord_user_id" => $_POST["discord_user_id"],
+        ":image" => $image_name
     ]);
     
     if ($success) {
