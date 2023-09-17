@@ -10,7 +10,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
-INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'), ('k.keio1256@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.') ,('taiki@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.');
+INSERT INTO users (email,password) VALUES ('taiki@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'), ('k.keio1256@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.') ,('hinagon1231@gmail.com', '$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('chiyoko@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('suzuki@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('haruka@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('ryudai@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('jun@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.'),('taiki@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.');
 
 DROP TABLE IF EXISTS user_details;
 CREATE TABLE user_details (
@@ -25,7 +25,7 @@ CREATE TABLE user_details (
     image VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id,image) VALUES (1,'小野','慶應','理工',3,'①','1031511085745983518','img1.jpg'),(2,'kazu','慶應','経済',3,'①','1031514540304760852', 'kazu.JPG'),(3,'taiki','慶應','理工',3,'①','1038013869949464616', 'taiki.jpg')
+INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id,image) VALUES (1,'鈴木大騎','慶應義塾','商',3.5,'①','1038013869949464616','suzuki.jpeg'),(2,'岩城和輝','慶應義塾','経済',3.0,'①','1031514540304760852', 'kazu.JPG'),(3,'小野媛乃','慶應義塾','理工',3.0,'①','1031511085745983518', 'hinano.jpg'),(4,'林千翼子','慶應義塾','商',1.0,'①','1026860996637245560','chiyoko.jpg'),(5,'三木晴加','慶應義塾','商',1.5,'①','1026860989586608148', 'haruka.JPG'),(6,'穴田竜大','慶應義塾','理工',1.5,'①','923134354056691722', 'ryudai.jpg'),(7,'石井潤','立教','経営',1.0,'①','1031511009480949800', 'jun.jpg'),(8,'壇野太紀','慶應義塾','環境情報',1.5,'①','698827317400829962', 'taiki.jpg');
 ;
 
 DROP TABLE IF EXISTS plans;
