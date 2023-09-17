@@ -25,7 +25,7 @@ CREATE TABLE user_details (
     image VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id) VALUES (1,'小野','慶應','理工',3,'①','1231','img1.jpg');
+INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id,image) VALUES (1,'小野','慶應','理工',3,'①','1231','img1.jpg');
 
 DROP TABLE IF EXISTS plans;
 CREATE TABLE plans (
