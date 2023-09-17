@@ -72,11 +72,11 @@ try {
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
   </div>
 
-  <div class="font-bold text-gray-800 text-xl mt-6 mb-4 flex justify-center font-cursive md:text-2xl lg:text-3xl xl:text-4xl mt-8">
+  <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive md:text-2xl lg:text-3xl xl:text-4xl mt-8">
     Today's Plan
   </div>
 
-  <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
+  <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto confirm-form">
     <div class="form-control mb-1">
       <label class="label cursor-pointer">
         <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded md:text-xl lg:text-2xl xl:text-3xl  ">業務</span>
