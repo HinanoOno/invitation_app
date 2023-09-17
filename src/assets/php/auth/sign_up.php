@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($password !== $confirmPassword) {
             // エラーメッセージをセットしてユーザーをリダイレクト
-            $_SESSION['error_message'] = "パスワードと確認用パスワードが一致しません。";
             
             header("Location: /auth/sign_up.php");
             exit(); 
