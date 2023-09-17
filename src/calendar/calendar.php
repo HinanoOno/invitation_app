@@ -15,7 +15,7 @@ $stmt->execute([
   ':user_id' => $_SESSION['id']
 ]);
 $posse = $stmt->fetch(PDO::FETCH_ASSOC);
-$sql = "SELECT name, discord_user_id, grade FROM `user_details` WHERE `posse` = :posse";
+$sql = "SELECT name, discord_user_id, grade, image FROM `user_details` WHERE `posse` = :posse";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([
   ':posse' => $posse['posse']
