@@ -22,6 +22,7 @@ CREATE TABLE user_details (
     grade DECIMAL(5,2),
     posse VARCHAR(255),
     discord_user_id VARCHAR(255),
+    image VARCHAR(255)
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id) VALUES (1,'小野','慶應','理工',3,'①','1231');
