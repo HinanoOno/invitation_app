@@ -1,6 +1,11 @@
 <?php
 require_once('./assets/php/dbconnect.php');
 session_start();
+if (!isset($_SESSION['id'])) {
+  header("Location: /auth/sign_in.php");
+   // 外部から来たらログインページに遷移
+  exit(); 
+}
 print_r($_SESSION);
 //今いる人をとってくる処理
 try {

@@ -1,5 +1,7 @@
 <?php
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   require('../assets/php/dbconnect.php');
   $stmt = $dbh->prepare("SELECT * FROM  users WHERE email=:email");
@@ -21,8 +23,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
   
 }
-
-
-
-
-?>
