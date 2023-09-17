@@ -3,9 +3,9 @@ require('../assets/php/dbconnect.php');
 $calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id where user_details.user_id = 1";
 $stmt = $dbh->query($calendars);
 $calendars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo '<pre>';
-print_r($calendars);
-echo '</pre>';
+// echo '<pre>';
+// print_r($calendars);
+// echo '</pre>';
 $calendars_json = json_encode($calendars);
 
 ?>
@@ -52,12 +52,19 @@ $calendars_json = json_encode($calendars);
             Schedule Tasks
           </div>
 
+
           <div class="bg-white rounded-lg shadow overflow-hidden">
 
-            <div class="flex items-center justify-between py-2">
+            <div class="flex items-center justify-between py-2 relative px-1">
               <div>
                 <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
                 <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+              </div>
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  ">
+                <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
+                <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦モク、横モク、MU</span>
+                <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
+                <span class="border-yellow-200 bg-yellow-200 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">その他</span>
               </div>
               <div class="border rounded-lg px-1" style="padding-top: 2px;">
                 <button type="button" class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
@@ -97,8 +104,8 @@ $calendars_json = json_encode($calendars);
                         <div class="py-1 rounded-lg mt-1 overflow-hidden border" :class="{
 												'border-blue-200 text-blue-800 bg-blue-100': event.event_color === '業務',
 												'border-red-200 text-red-800 bg-red-100': event.event_color === '縦モク、横モク、MU',
-												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_color === 'カリキュラム',
-												'border-green-200 text-green-800 bg-green-100': event.event_color === 'その他',
+												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_color === 'その他',
+												'border-green-200 text-green-800 bg-green-100': event.event_color === 'カリキュラム',
 											}">
                           <p x-text="event.event_theme" class="text-sm truncate leading-tight"></p>
                         </div>
