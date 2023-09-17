@@ -44,6 +44,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="dns-prefetch" href="//unpkg.com" />
+  <link rel="stylesheet" href="../assets/style/header.css">
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
@@ -57,7 +58,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-  <?php require("../components/header.php")?>
+  <?php require("../components/header.php") ?>
 
   <div>
 
@@ -71,10 +72,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="antialiased sans-serif bg-gray-100 h-screen">
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-        <div class=" mx-auto py-2 md:py-24 w-full">
+        <div class=" mx-auto py-2 md:py-24 w-full mb-3">
 
           <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive">
-          When you coming?
+            When you coming?
           </div>
 
 
@@ -280,7 +281,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <!-- /Modal -->
       </div>
-      <?php require("../components/footer.php")?>
       <script>
         const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -399,8 +399,27 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
           }
         }
-      </script>;
+      </script>
+      <script>
+        let lastScrollTop = 0;
+        const header = document.querySelector('header.relative');
+
+        window.addEventListener('scroll', () => {
+          let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          if (scrollTop > lastScrollTop) {
+            // 下にスクロールしたとき
+            header.style.visibility = "hidden";
+            header.style.opacity = "0";
+          } else {
+            // 上にスクロールしたとき
+            header.style.visibility = "visible";
+            header.style.opacity = "1";
+          }
+          lastScrollTop = scrollTop;
+        });
+      </script>
     </div>
+    <?php require("../components/footer.php") ?>
 
 </body>
 
