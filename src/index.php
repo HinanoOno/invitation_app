@@ -6,7 +6,6 @@ if (!isset($_SESSION['id'])) {
   // 外部から来たらログインページに遷移
   exit();
 }
-print_r($_SESSION);
 //今いる人をとってくる処理
 try {
   $dbh->beginTransaction();
@@ -57,7 +56,7 @@ try {
   <?php require("./components/header.php") ?>
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
-      <label class="label cursor-pointer justify-center">
+      <label class="label cursor-pointer">
         <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
         <input type="checkbox" class="checkbox " id="plan1" name="plans[]" value="1" />
       </label>
