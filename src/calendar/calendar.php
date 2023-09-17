@@ -257,7 +257,7 @@
             event_theme: 'blue',
 
             themes: [{
-                value: "jober/本部",
+                value: "1",
                 label: "jober/本部"
               },
               {
