@@ -1,6 +1,11 @@
 <?php
 require('../assets/php/dbconnect.php');
 session_start();
+if (!isset($_SESSION['id'])) {
+  header("Location: /auth/sign_in.php");
+   // 外部から来たらログインページに遷移
+  exit(); 
+}
 $calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id ";
 $stmt = $dbh->query($calendars);
 $calendars = $stmt->fetchAll(PDO::FETCH_ASSOC);
