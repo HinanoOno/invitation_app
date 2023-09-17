@@ -19,7 +19,7 @@ CREATE TABLE user_details (
     name VARCHAR(255),
     university VARCHAR(255),
     faculty VARCHAR(255),
-    grade DECIMAL(5,2),
+    grade DECIMAL(5,1),
     posse VARCHAR(255),
     discord_user_id VARCHAR(255),
     image VARCHAR(255),
