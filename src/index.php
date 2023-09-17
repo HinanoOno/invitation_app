@@ -36,6 +36,9 @@ try {
   $dbh->rollBack();
   echo "データベースエラー: " . $e->getMessage();
 }
+// echo "<pre>";
+// print_r($results);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -45,7 +48,6 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./assets/style/reset.css">
-  <link rel="stylesheet" href="./assets/style/checkbox.css">
   <link href="/dist/output.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -53,7 +55,7 @@ try {
 
 <body>
   <?php require("./components/header.php") ?>
-  <form method="POST" action='./assets/php/index.php'>
+  <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
       <label class="label cursor-pointer justify-center">
         <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
@@ -62,33 +64,44 @@ try {
     </div>
     <div class="form-control">
       <label class="label cursor-pointer">
-      <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦・横モク</span>
+        <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦・横モク</span>
         <input type="checkbox" class="checkbox" id="plan2" name="plans[]" value="2" />
       </label>
     </div>
     <div class="form-control">
       <label class="label cursor-pointer">
-      <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
+        <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
         <input type="checkbox" class="checkbox" id="plan3" name="plans[]" value="3" />
       </label>
     </div>
     <div class="form-control">
       <label class="label cursor-pointer">
-      <span class="bg-yellow-100 border-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
+        <span class="bg-yellow-100 border-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
         <input type="checkbox" class="checkbox" id="plan4" name="plans[]" value="4" />
       </label>
     </div>
     <div class="form-control">
       <label class="label cursor-pointer">
-      <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">その他</span>
+        <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">その他</span>
         <input type="checkbox" class="checkbox" id="plan5" name="plans[]" value="5" />
       </label>
     </div>
+    <div class="flex justify-center">
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700" name='status' value='入室'>
+          入場
+        </button>
+        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700" name="status" value="退室">
+          退場
+        </button>
+      </div>
+    </div>
 
-    <button type="submit" name='status' value='入室'>入室</button>
-    <button type="submit" name='status' value='退室'>退室</button>
   </form>
 
+  <?php if(empty($results)) {?>
+    <!-- ここにalertで誰もいないこと伝えたいな -->
+    <?php } else {?>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -112,7 +125,7 @@ try {
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
               <a href="./detail.php?id=<?= $result["user_id"] ?>">
-                <img class="w-10 h-10 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
+                <img class="w-12 h-12 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
               </a>
             </th>
             <td class="px-4 py-4">
@@ -134,6 +147,7 @@ try {
       </tbody>
     </table>
   </div>
+  <?php } ?>
 
   <script src="./assets/scripts/checkbox.js"></script>
 </body>
