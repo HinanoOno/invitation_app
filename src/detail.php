@@ -40,8 +40,27 @@ require_once('./assets/php/detail.php');
             <input type="text" id="posse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?= $student["posse"] . $student["grade"]?>" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
         </div>
     </div>
+    <?php require("./components/footer.php")?>
 
   </main>
+  <script>
+  let lastScrollTop = 0;
+  const header = document.querySelector('header.relative');
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop){
+       // 下にスクロールしたとき
+       header.style.visibility = "hidden";
+       header.style.opacity = "0";
+    } else {
+       // 上にスクロールしたとき
+       header.style.visibility = "visible";
+       header.style.opacity = "1";
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
 </body>
 
 </html>

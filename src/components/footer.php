@@ -1,4 +1,4 @@
-<footer class="absolute  h-20 bottom-0 w-screen bg-gray-800 text-white ">
+<footer class="fixed h-20 bottom-0 w-screen bg-gray-800 text-white ">
   <div class="flex">
     <div class="border-r border-white h-20 w-1/2 flex flex-col items-center justify-center">
       <a href="./../index.php" class="flex flex-col items-center justify-center">
