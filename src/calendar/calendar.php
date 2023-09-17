@@ -3,8 +3,8 @@ require('../assets/php/dbconnect.php');
 session_start();
 if (!isset($_SESSION['id'])) {
   header("Location: /auth/sign_in.php");
-   // 外部から来たらログインページに遷移
-  exit(); 
+  // 外部から来たらログインページに遷移
+  exit();
 }
 $calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id ";
 $stmt = $dbh->query($calendars);
@@ -26,9 +26,9 @@ $stmt->execute([
   ':posse' => $posse['posse']
 ]);
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo '<pre>';
-print_r($users);
-echo '</pre>';
+// echo '<pre>';
+// print_r($users);
+// echo '</pre>';
 
 ?>
 <!DOCTYPE html>
@@ -42,6 +42,11 @@ echo '</pre>';
   <link href="../dist/output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+  <link rel="dns-prefetch" href="//unpkg.com" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
   <script type="text/javascript" src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js" defer></script>
   <?php echo "<script>
   var calendarsData = $calendars_json;
@@ -51,14 +56,11 @@ echo '</pre>';
 </head>
 
 <body>
+  <?php require("../components/header.php")?>
 
   <div>
 
-    <link rel="dns-prefetch" href="//unpkg.com" />
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+
 
     <style>
       [x-cloak] {
@@ -68,26 +70,25 @@ echo '</pre>';
 
     <div class="antialiased sans-serif bg-gray-100 h-screen">
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-        <div class="container mx-auto py-2 md:py-24">
+        <div class=" mx-auto py-2 md:py-24 w-full">
 
-          <div class="font-bold text-gray-800 text-xl mb-4">
-            Schedule Tasks
+          <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive">
+          When you coming?
           </div>
 
 
           <div class="bg-white rounded-lg shadow overflow-hidden">
 
-            <div class="flex items-center justify-between py-2 relative px-1">
-              <div>
+            <div class="flex items-center justify-between py-2 relative px-1 gap-1">
+              <div class="mr-1">
                 <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-                <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
               </div>
               <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  ">
-                <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
-                <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦・横モク</span>
-                <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
-                <span class="border-yellow-200 bg-yellow-200 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
-                <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">その他</span>
+                <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-1 px-2.5 py-0.5 rounded ">業務</span>
+                <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-1 px-2.5 py-0.5 rounded ">縦・横モク</span>
+                <span class="border-yellow-200 bg-yellow-200 text-yellow-800 text-xs font-medium mr-1 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
+                <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-1 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
+                <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-1 px-2.5 py-0.5 rounded ">その他</span>
               </div>
               <div class="border rounded-lg px-1" style="padding-top: 2px;">
                 <button type="button" class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" :class="{'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
@@ -254,7 +255,7 @@ echo '</pre>';
                   <label for="countries_multiple" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                   <select multiple id="countries_multiple" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="name[]">
                     <?php foreach ($users as $user) : ?>
-                      <option  value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
+                      <option value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
                     <?php endforeach; ?>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
