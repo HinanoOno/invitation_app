@@ -10,6 +10,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','pass');
 
 DROP TABLE IF EXISTS user_details;
 CREATE TABLE user_details (
@@ -23,12 +24,15 @@ CREATE TABLE user_details (
     discord_user_id VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+INSERT INTO user_details (user_id,name,university,faculty,grade,posse,discord_user_id) VALUES (1,'小野','慶應','理工',3,'①','1231');
 
 DROP TABLE IF EXISTS plans;
 CREATE TABLE plans (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
+
+INSERT INTO plans (name) VALUES ('業務'), ('縦モク/横モク/MU'), ('カリキュラム'), ('その他');
 
 DROP TABLE IF EXISTS calendars;
 CREATE TABLE calendars (
