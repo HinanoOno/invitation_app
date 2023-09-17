@@ -6,7 +6,6 @@ if (!isset($_SESSION['id'])) {
   // 外部から来たらログインページに遷移
   exit();
 }
-print_r($_SESSION);
 //今いる人をとってくる処理
 try {
   $dbh->beginTransaction();
@@ -50,17 +49,24 @@ try {
   <link rel="stylesheet" href="./assets/style/reset.css">
   <link href="/dist/output.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col">
   <?php require("./components/header.php") ?>
+<<<<<<< HEAD
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
     </div>
+=======
+  <main>
+    
+  </main>
+>>>>>>> cc66b112c0ecb6462cfac51d9c54fde1a7a5cfae
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
-      <label class="label cursor-pointer justify-center">
+      <label class="label cursor-pointer">
         <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
         <input type="checkbox" class="checkbox " id="plan1" name="plans[]" value="1" />
       </label>
@@ -151,6 +157,7 @@ try {
     </table>
   </div>
   <?php } ?>
+  <?php require("./components/footer.php") ?>
 
   <script src="./assets/scripts/checkbox.js"></script>
 </body>
