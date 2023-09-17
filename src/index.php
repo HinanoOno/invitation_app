@@ -36,6 +36,9 @@ try {
   $dbh->rollBack();
   echo "データベースエラー: " . $e->getMessage();
 }
+// echo "<pre>";
+// print_r($results);
+// echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -96,6 +99,8 @@ try {
 
   </form>
 
+  <?php if(empty($results)) {?>
+    <?php } else {?>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -119,7 +124,7 @@ try {
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <th scope="row" class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
               <a href="./detail.php?id=<?= $result["user_id"] ?>">
-                <img class="w-10 h-10 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
+                <img class="w-12 h-12 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
               </a>
             </th>
             <td class="px-4 py-4">
@@ -141,6 +146,7 @@ try {
       </tbody>
     </table>
   </div>
+  <?php } ?>
 
   <script src="./assets/scripts/checkbox.js"></script>
 </body>
