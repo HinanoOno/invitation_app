@@ -37,6 +37,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ":image" => $image_name
     ]);
     
+
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $password = $_POST["password"];
+        $confirmPassword = $_POST["confirm_password"];
+
+        if ($password !== $confirmPassword) {
+            // エラーメッセージをセットしてユーザーをリダイレクト
+            $_SESSION['error_message'] = "パスワードと確認用パスワードが一致しません。";
+            
+            header("Location: /auth/sign_up.php");
+            exit(); 
+        }
+    }
+
+
     if ($success) {
         // ユーザー詳細情報も正常に保存された場合の処理
         $_SESSION['id'] = $lastInsertId;
