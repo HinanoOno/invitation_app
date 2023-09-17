@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     "date" => $date,
     "start_time" => $start_time,
     "end_time" => $end_time,
-    "userdetail_id" => 1
+    "userdetail_id" => $_SESSION["id"]
   ]);
 
   $lastInsertedId = $dbh->lastInsertId();

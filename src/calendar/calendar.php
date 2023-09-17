@@ -1,12 +1,14 @@
 <?php
 require('../assets/php/dbconnect.php');
-$calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id where user_details.user_id = 1";
+session_start();
+$calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id ";
 $stmt = $dbh->query($calendars);
 $calendars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // echo '<pre>';
 // print_r($calendars);
 // echo '</pre>';
 $calendars_json = json_encode($calendars);
+print_r($_SESSION["id"])
 
 ?>
 <!DOCTYPE html>
