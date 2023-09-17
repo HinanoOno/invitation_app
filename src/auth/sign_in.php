@@ -1,4 +1,5 @@
 <?php
+  require('../assets/php/auth/sign_in.php');
 ?>
 
 <!DOCTYPE html>
