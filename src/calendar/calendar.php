@@ -42,6 +42,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <link href="../dist/output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="dns-prefetch" href="//unpkg.com" />
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
@@ -279,6 +280,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <!-- /Modal -->
       </div>
+      <?php require("../components/footer.php")?>
       <script>
         const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
