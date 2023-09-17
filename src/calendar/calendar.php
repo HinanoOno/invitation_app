@@ -1,5 +1,13 @@
 <?php
 require('../assets/php/dbconnect.php');
+$calendars = "SELECT calendars.*, plans.name as event_theme, user_details.name as name FROM calendar_plan join calendars on calendar_plan.calendar_id = calendars.id join plans on calendar_plan.plan_id = plans.id join user_details on calendars.userdetail_id = user_details.user_id where user_details.user_id = 1";
+$stmt = $dbh->query($calendars);
+$calendars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>';
+print_r($calendars);
+echo '</pre>';
+$calendars_json = json_encode($calendars);
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,6 +21,10 @@ require('../assets/php/dbconnect.php');
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
   <script type="text/javascript" src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js" defer></script>
+  <?php echo "<script>
+  var calendarsData = $calendars_json;
+</script>";
+  ?>
 
 </head>
 
@@ -36,9 +48,9 @@ require('../assets/php/dbconnect.php');
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
         <div class="container mx-auto py-2 md:py-24">
 
-          <!-- <div class="font-bold text-gray-800 text-xl mb-4">
-				Schedule Tasks
-			</div> -->
+          <div class="font-bold text-gray-800 text-xl mb-4">
+            Schedule Tasks
+          </div>
 
           <div class="bg-white rounded-lg shadow overflow-hidden">
 
@@ -83,11 +95,10 @@ require('../assets/php/dbconnect.php');
 
                       <template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
                         <div class="py-1 rounded-lg mt-1 overflow-hidden border" :class="{
-												'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
-												'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
-												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
-												'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
-												'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+												'border-blue-200 text-blue-800 bg-blue-100': event.event_color === '業務',
+												'border-red-200 text-red-800 bg-red-100': event.event_color === '縦モク、横モク、MU',
+												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_color === 'カリキュラム',
+												'border-green-200 text-green-800 bg-green-100': event.event_color === 'その他',
 											}">
                           <p x-text="event.event_theme" class="text-sm truncate leading-tight"></p>
                         </div>
@@ -119,75 +130,75 @@ require('../assets/php/dbconnect.php');
               </div>
 
               <div class="flex gap-1 align-middle">
-              <div class="mt-2 p-4 w-32 bg-white rounded-lg shadow-xl">
-                <div class="flex">
-                  <select name="start_hours" class="bg-transparent text-xl appearance-none outline-none" >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">10</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                  </select>
-                  <span class="text-xl mr-3">:</span>
-                  <select name="start_minutes" class="bg-transparent text-xl appearance-none outline-none mr-4">
-                    <option value="0">00</option>
-                    <option value="30">30</option>
-                  </select>
+                <div class="mt-2 p-4 w-32 bg-white rounded-lg shadow-xl">
+                  <div class="flex">
+                    <select name="start_hours" class="bg-transparent text-xl appearance-none outline-none">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">10</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                    </select>
+                    <span class="text-xl mr-3">:</span>
+                    <select name="start_minutes" class="bg-transparent text-xl appearance-none outline-none mr-4">
+                      <option value="0">00</option>
+                      <option value="30">30</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="mt-5">~</div>
-              <div class="mt-2 p-4 w-32 bg-white rounded-lg shadow-xl">
-                <div class="flex">
-                <select name="end_hours" class="bg-transparent text-xl appearance-none outline-none" >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">10</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                  </select>
-                  <span class="text-xl mr-3">:</span>
-                  <select name="end_minutes" class="bg-transparent text-xl appearance-none outline-none mr-4">
-                    <option value="0">00</option>
-                    <option value="30">30</option>
-                  </select>
+                <div class="mt-5">~</div>
+                <div class="mt-2 p-4 w-32 bg-white rounded-lg shadow-xl">
+                  <div class="flex">
+                    <select name="end_hours" class="bg-transparent text-xl appearance-none outline-none">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">10</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                    </select>
+                    <span class="text-xl mr-3">:</span>
+                    <select name="end_minutes" class="bg-transparent text-xl appearance-none outline-none mr-4">
+                      <option value="0">00</option>
+                      <option value="30">30</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
               </div>
 
               <div class="inline-block w-64 mb-4">
@@ -232,27 +243,7 @@ require('../assets/php/dbconnect.php');
             blankdays: [],
             days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
-            events: [{
-                event_date: new Date(2023, 9, 16),
-                event_start_time: '10:00',
-                event_end_time: '12:00',
-                event_theme: 'blue'
-              },
-
-              {
-                event_date: new Date(2023, 9, 16),
-                event_start_time: '10:00',
-                event_end_time: '12:00',
-                event_theme: 'red'
-              },
-
-              {
-                event_date: new Date(<?php echo strtotime('2023-09-16') * 1000; ?>),
-                event_start_time: '10:00',
-                event_end_time: '12:00',
-                event_theme: 'green'
-              },
-            ],
+            events: [],
             event_date: '',
             event_start_time: '',
             event_end_time: '',
@@ -278,11 +269,23 @@ require('../assets/php/dbconnect.php');
 
             openEventModal: false,
 
+            initEvents() {
+              calendarsData.forEach(calendar => {
+                this.events.push({
+                  event_date: new Date(calendar.date + ' ' + calendar.start_time),
+                  event_start_time: calendar.start_time,
+                  event_end_time: calendar.end_time,
+                  event_color: calendar.event_theme,
+                  event_theme: calendar.name
+                });
+              });
+            },
             initDate() {
               let today = new Date();
               this.month = today.getMonth();
               this.year = today.getFullYear();
               this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+              this.initEvents();
             },
 
             isToday(date) {
