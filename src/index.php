@@ -55,15 +55,10 @@ try {
 
 <body class="min-h-screen flex flex-col">
   <?php require("./components/header.php") ?>
-<<<<<<< HEAD
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
-    </div>
-=======
-  <main>
-    
-  </main>
->>>>>>> cc66b112c0ecb6462cfac51d9c54fde1a7a5cfae
+  </div>
+
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
       <label class="label cursor-pointer">
@@ -108,54 +103,54 @@ try {
 
   </form>
 
-  <?php if(empty($results)) {?>
+  <?php if (empty($results)) { ?>
     <!-- ここにalertで誰もいないこと伝えたいな -->
-    <?php } else {?>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th scope="col" class="px-4 py-3">
-            Image
-          </th>
-          <th scope="col" class="px-4 py-3">
-            Name
-          </th>
-          <th scope="col" class="px-4 py-3">
-            Position
-          </th>
-          <th scope="col" class="px-4 py-3">
-            Status
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($results as $result) { ?>
-          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th scope="row" class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-              <a href="./detail.php?id=<?= $result["user_id"] ?>">
-                <img class="w-12 h-12 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
-              </a>
+  <?php } else { ?>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-4 py-3">
+              Image
             </th>
-            <td class="px-4 py-4">
-              <?= $result['user_posse'] . $result['user_grade'] ?>
-            </td>
-            <td class="px-4 py-4">
-              <div class="text-sm text-gray-500 dark:text-gray-400">
-                <?= $result['user_name'] ?>
-              </div>
-            </td>
-            <td class="px-4 py-4">
-              <?php $plans = explode(',', $result['plans']);
-              foreach ($plans as $plan) { ?>
-                <?= $plan ?><br>
-              <?php } ?>
-            </td>
+            <th scope="col" class="px-4 py-3">
+              Name
+            </th>
+            <th scope="col" class="px-4 py-3">
+              Position
+            </th>
+            <th scope="col" class="px-4 py-3">
+              Status
+            </th>
           </tr>
-        <?php } ?>
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <?php foreach ($results as $result) { ?>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                <a href="./detail.php?id=<?= $result["user_id"] ?>">
+                  <img class="w-12 h-12 rounded-full" src="./assets/img/<?php print_r($result["user_image"]) ?>" alt="Jese image">
+                </a>
+              </th>
+              <td class="px-4 py-4">
+                <?= $result['user_posse'] . $result['user_grade'] ?>
+              </td>
+              <td class="px-4 py-4">
+                <div class="text-sm text-gray-500 dark:text-gray-400">
+                  <?= $result['user_name'] ?>
+                </div>
+              </td>
+              <td class="px-4 py-4">
+                <?php $plans = explode(',', $result['plans']);
+                foreach ($plans as $plan) { ?>
+                  <?= $plan ?><br>
+                <?php } ?>
+              </td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
   <?php } ?>
   <?php require("./components/footer.php") ?>
 
