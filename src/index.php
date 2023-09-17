@@ -45,23 +45,45 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./assets/style/reset.css">
+  <link rel="stylesheet" href="./assets/style/checkbox.css">
   <link href="/dist/output.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
   <?php require("./components/header.php") ?>
   <form method="POST" action='./assets/php/index.php'>
-    <input type="checkbox" id="plan1" name="plans[]" value="1">
-    <label for="plan1">業務</label><br>
-
-    <input type="checkbox" id="plan2" name="plans[]" value="2">
-    <label for="plan2">縦モク/横モク/MU</label><br>
-
-    <input type="checkbox" id="plan3" name="plans[]" value="3">
-    <label for="plan3">カリキュラム</label><br>
-
-    <input type="checkbox" id="plan4" name="plans[]" value="4">
-    <label for="plan4">その他</label><br>
+    <div class="form-control">
+      <label class="label cursor-pointer justify-center">
+        <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">業務</span>
+        <input type="checkbox" class="checkbox " id="plan1" name="plans[]" value="1" />
+      </label>
+    </div>
+    <div class="form-control">
+      <label class="label cursor-pointer">
+      <span class="border-red-200 bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">縦・横モク</span>
+        <input type="checkbox" class="checkbox" id="plan2" name="plans[]" value="2" />
+      </label>
+    </div>
+    <div class="form-control">
+      <label class="label cursor-pointer">
+      <span class="border-green-100 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">カリキュラム</span>
+        <input type="checkbox" class="checkbox" id="plan3" name="plans[]" value="3" />
+      </label>
+    </div>
+    <div class="form-control">
+      <label class="label cursor-pointer">
+      <span class="bg-yellow-100 border-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">MU</span>
+        <input type="checkbox" class="checkbox" id="plan4" name="plans[]" value="4" />
+      </label>
+    </div>
+    <div class="form-control">
+      <label class="label cursor-pointer">
+      <span class="border-gray-100 bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">その他</span>
+        <input type="checkbox" class="checkbox" id="plan5" name="plans[]" value="5" />
+      </label>
+    </div>
 
     <button type="submit" name='status' value='入室'>入室</button>
     <button type="submit" name='status' value='退室'>退室</button>
@@ -113,7 +135,7 @@ try {
     </table>
   </div>
 
-
+  <script src="./assets/scripts/checkbox.js"></script>
 </body>
 
 </html>
