@@ -1,7 +1,7 @@
 <?php
   session_start();
   require_once('dbconnect.php');
-  
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['plans'])){
       $selectedValues = $_POST["plans"];
@@ -47,11 +47,11 @@
         $context = stream_context_create($options);
         $result = file_get_contents($discordWebhookURL, false, $context);
 
-        if ($result === FALSE) {
+        /*if ($result === FALSE) {
             echo "Discord通知の送信に失敗しました。";
         } else {
             echo "データが登録され、Discordに通知が送信されました。";
-        }  
+        }*/
         header("Location: ". "/index.php");
         exit();
       } catch (PDOException $e) {
