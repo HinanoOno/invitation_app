@@ -49,11 +49,15 @@ try {
   <link rel="stylesheet" href="./assets/style/reset.css">
   <link href="/dist/output.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col">
   <?php require("./components/header.php") ?>
+  <main>
+    
+  </main>
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
       <label class="label cursor-pointer">
@@ -147,6 +151,7 @@ try {
     </table>
   </div>
   <?php } ?>
+  <?php require("./components/footer.php") ?>
 
   <script src="./assets/scripts/checkbox.js"></script>
 </body>
