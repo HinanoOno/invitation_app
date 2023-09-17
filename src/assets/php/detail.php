@@ -14,7 +14,7 @@ $sql_student = "SELECT
 $stmt_student = $dbh->prepare($sql_student);
 $stmt_student->execute([':user_id' => $user_id]);
 $student = $stmt_student->fetch(PDO::FETCH_ASSOC);
-echo "<pre>";
-print_r($student);
-echo "</pre>";
+// echo "<pre>";
+// print_r($student);
+// echo "</pre>";
 
