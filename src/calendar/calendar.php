@@ -56,7 +56,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col  md:min-h-0 ">
   <?php require("../components/header.php")?>
 
   <div>
@@ -399,7 +399,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
           }
         }
-      </script>;
+      </script>
     </div>
 
 </body>

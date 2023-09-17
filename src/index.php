@@ -53,17 +53,11 @@ try {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col  md:min-h-0 md:mb-36">
   <?php require("./components/header.php") ?>
-<<<<<<< HEAD
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
-    </div>
-=======
-  <main>
-    
-  </main>
->>>>>>> cc66b112c0ecb6462cfac51d9c54fde1a7a5cfae
+  </div>
   <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
     <div class="form-control">
       <label class="label cursor-pointer">
