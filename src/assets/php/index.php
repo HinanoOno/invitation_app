@@ -69,7 +69,31 @@
                 "status" => $status,
                 "userDetail_id" => $_SESSION['id']
             ]);
+
+            $sql = "SELECT name FROM user_details WHERE id = :userID";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(":userID", $_SESSION['id'], PDO::PARAM_INT);
+            $stmt->execute();
+            $user_name = $stmt->fetch(PDO::FETCH_ASSOC);
             $dbh->commit();
+            // Discord通知を行う先
+            $discordWebhookURL = "https://discord.com/api/webhooks/1152754404156510208/VXcIz8LVxBbNaXViJrp9aVH5TjXR_nV7CHUmld2bVtBsuapal7BHWMU2xM1SzY6OIwcX";
+            $message = $user_name['name']."さんが退出しました"; 
+    
+            $data = [
+                "content" => $message
+            ];
+    
+            $options = [
+                "http" => [
+                    "header" => "Content-Type: application/json",
+                    "method" => "POST",
+                    "content" => json_encode($data)
+                ]
+            ];
+    
+            $context = stream_context_create($options);
+            $result = file_get_contents($discordWebhookURL, false, $context);
 
             header("Location: ". "/index.php");
             exit(); 
