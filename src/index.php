@@ -54,7 +54,7 @@ try {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col  md:min-h-0 md:mb-36">
   <?php require("./components/header.php") ?>
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">

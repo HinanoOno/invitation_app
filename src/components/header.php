@@ -17,7 +17,7 @@
       </a>
     </div>
     <div class="flex items-center lg:order-2 absolute top-4 right-5">
-        <a href="../assets/php/auth/sign_out.php" class=" text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 font-cursive">Log out</a>
+        <a href="../assets/php/auth/sign_out.php" class="text-white hover:text-navy border border-transparent hover:border-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 font-cursive">Log out</a>
     </div>
   </nav>
 </header>

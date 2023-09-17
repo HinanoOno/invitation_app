@@ -57,8 +57,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </head>
 
-<body>
-  <?php require("../components/header.php") ?>
+<body class="min-h-screen flex flex-col  md:min-h-0 ">
+  <?php require("../components/header.php")?>
 
   <div>
 
@@ -399,25 +399,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
           }
         }
-      </script>
-      <script>
-        let lastScrollTop = 0;
-        const header = document.querySelector('header.relative');
-
-        window.addEventListener('scroll', () => {
-          let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          if (scrollTop > lastScrollTop) {
-            // 下にスクロールしたとき
-            header.style.visibility = "hidden";
-            header.style.opacity = "0";
-          } else {
-            // 上にスクロールしたとき
-            header.style.visibility = "visible";
-            header.style.opacity = "1";
-          }
-          lastScrollTop = scrollTop;
-        });
-      </script>
+      </script>;
     </div>
     <?php require("../components/footer.php") ?>
 
