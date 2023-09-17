@@ -261,21 +261,17 @@
                 label: "jober/本部"
               },
               {
-                value: "red",
-                label: "Red Theme"
+                value: "2",
+                label: "縦モク/横モク/MU"
               },
               {
-                value: "yellow",
-                label: "Yellow Theme"
+                value: "3",
+                label: "カリキュラム"
               },
               {
-                value: "green",
-                label: "Green Theme"
+                value: "4",
+                label: "その他"
               },
-              {
-                value: "purple",
-                label: "Purple Theme"
-              }
             ],
 
             openEventModal: false,
