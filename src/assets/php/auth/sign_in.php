@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(password_verify($_POST["password"], $user["password"])){
     session_start();
     $_SESSION['id'] = $user["id"];
-    $_SESSION['name'] = $user["name"];
+    //$_SESSION['name'] = $user["name"];
 
     header("Location: ". "/index.php");
   }
