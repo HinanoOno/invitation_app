@@ -51,6 +51,6 @@ module.exports = {
   'cursive': [ 'cursive'],
     }
   },
-  plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [require("daisyui")],
 }
 
