@@ -1,5 +1,6 @@
 <?php
   require_once('dbconnect.php');
+  session_start();
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['plans'])){
       $selectedValues = $_POST["plans"];
@@ -16,7 +17,7 @@
               $sql = "INSERT INTO userDetail_plan (userDetail_id, plan_id, status) VALUES (:userDetail_id, :plan_id, :status)";
               $stmt = $dbh->prepare($sql);
               $stmt->execute([
-                  "userDetail_id" => 1,
+                  "userDetail_id" => $_SESSION['id'],
                   "plan_id" => $value,
                   "status" => $status
               ]);
@@ -33,10 +34,11 @@
 
         try {
             $dbh->beginTransaction();
-            $sql = "UPDATE userDetail_plan SET status = :status WHERE userDetail_id = 1";
+            $sql = "UPDATE userDetail_plan SET status = :status WHERE userDetail_id = :userDetail_id";
             $stmt = $dbh->prepare($sql);
             $stmt->execute([
-                "status" => $status
+                "status" => $status,
+                "userDetail_id" => $_SESSION['id']
             ]);
             $dbh->commit();
 

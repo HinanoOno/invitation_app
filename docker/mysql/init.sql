@@ -10,7 +10,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
-INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','pass');
+INSERT INTO users (email,password) VALUES ('hinagon1231@gmail.com','$2y$10$tG4YEwUHd6.op.tMSYDoCufeFj83bk/AzRhm2L2V/Q48w5WXf03j.');
 
 DROP TABLE IF EXISTS user_details;
 CREATE TABLE user_details (
