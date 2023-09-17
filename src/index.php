@@ -7,6 +7,7 @@
   <link href="/dist/output.css" rel="stylesheet">
 </head>
 <body>
+  <?php require("./components/header.php")?>
   <h1 class="m-4">test</h1>
 </body>
 </html>
