@@ -8,7 +8,22 @@ $calendars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // print_r($calendars);
 // echo '</pre>';
 $calendars_json = json_encode($calendars);
-print_r($_SESSION["id"])
+// 該当posseを検索し、そのuser全てを取得する
+$sql_posse = "SELECT posse from user_details where user_id = :user_id";
+$stmt = $dbh->prepare($sql_posse);
+$stmt->execute([
+  ':user_id' => $_SESSION['id']
+]);
+$posse = $stmt->fetch(PDO::FETCH_ASSOC);
+$sql = "SELECT name, discord_user_id, grade FROM `user_details` WHERE `posse` = :posse";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([
+  ':posse' => $posse['posse']
+]);
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+echo '<pre>';
+print_r($users);
+echo '</pre>';
 
 ?>
 <!DOCTYPE html>
