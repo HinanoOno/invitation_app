@@ -50,6 +50,7 @@ try {
   <link href="/dist/output.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="./assets/style/header.css">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -156,7 +157,26 @@ try {
   <?php } ?>
   <?php require("./components/footer.php") ?>
 
-  <script src="./assets/scripts/checkbox.js"></script>
+  <script>
+  let lastScrollTop = 0;
+  const header = document.querySelector('header.relative');
+  console.log(header);
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    console.log(scrollTop);
+    if (scrollTop > lastScrollTop){
+       // 下にスクロールしたとき
+       header.style.visibility = "hidden";
+       header.style.opacity = "0";
+    } else {
+       // 上にスクロールしたとき
+       header.style.visibility = "visible";
+       header.style.opacity = "1";
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
 </body>
 
 </html>

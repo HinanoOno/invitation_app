@@ -43,6 +43,24 @@ require_once('./assets/php/detail.php');
     <?php require("./components/footer.php")?>
 
   </main>
+  <script>
+  let lastScrollTop = 0;
+  const header = document.querySelector('header.relative');
+
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop){
+       // 下にスクロールしたとき
+       header.style.visibility = "hidden";
+       header.style.opacity = "0";
+    } else {
+       // 上にスクロールしたとき
+       header.style.visibility = "visible";
+       header.style.opacity = "1";
+    }
+    lastScrollTop = scrollTop;
+  });
+</script>
 </body>
 
 </html>
