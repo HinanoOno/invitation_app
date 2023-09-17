@@ -1,4 +1,6 @@
 <?php
+  require('../assets/php/auth/sign_up.php');
+
 ?>
 
 <!DOCTYPE html>
