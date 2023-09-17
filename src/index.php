@@ -116,13 +116,13 @@ try {
               Image
             </th>
             <th scope="col" class="px-4 py-3">
+              Status
+            </th>
+            <th scope="col" class="px-4 py-3">
               Name
             </th>
             <th scope="col" class="px-4 py-3">
-              Position
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Status
+              Plan
             </th>
           </tr>
         </thead>

@@ -71,7 +71,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="antialiased sans-serif bg-gray-100 h-screen">
       <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-        <div class=" mx-auto py-2 md:py-24 w-full">
+        <div class=" mx-auto py-2 md:py-24 w-full mb-3">
 
           <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive">
           When you coming?
@@ -280,7 +280,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <!-- /Modal -->
       </div>
-      <?php require("../components/footer.php")?>
       <script>
         const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -399,8 +398,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             }
           }
         }
-      </script>;
+      </script>
     </div>
+    <?php require("../components/footer.php")?>
 
 </body>
 
