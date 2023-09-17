@@ -9,6 +9,7 @@ try {
     ud.name AS user_name,
     CAST(ud.grade AS UNSIGNED) AS user_grade,
     ud.posse AS user_posse,
+    ud.image AS user_image,
     GROUP_CONCAT(p.name) AS plans
   FROM
     user_details ud
@@ -19,7 +20,7 @@ try {
   WHERE
     udp.status = 1
   GROUP BY
-    ud.name, ud.grade, ud.posse;
+    ud.name, ud.grade, ud.posse,ud.image;
   ";
   $stmt = $dbh->prepare($sql);
   $stmt->execute();
@@ -61,6 +62,7 @@ try {
   <h1>いる人リスト</h1>
   <table class='table'>
     <tr>
+      <th>Image</th>
       <th>POSSE</th>
       <th>Grade</th>
       <th>User Name</th>
@@ -68,6 +70,7 @@ try {
     </tr>
     <?php foreach($results as $result){?>
       <tr>
+        <td><img class="w-10 h-10 rounded-full" src="./assets/img/<?= $result["user_image"] ?>" alt="user_image"></td>
         <td><?=$result['user_posse']?></td>
         <td><?=$result['user_grade']?></td>
         <td><?=$result['user_name']?></td>
