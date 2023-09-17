@@ -47,14 +47,26 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./assets/style/reset.css">
+  <link rel="stylesheet" href="./assets/style/index.css">
   <link href="/dist/output.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.5/dist/full.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="./assets/style/header.css">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="min-h-screen flex flex-col  md:min-h-0 md:mb-36">
+<div class="loader">
+  <h1 class="title">
+    <span>W</span>
+    <span>I</span>
+    <span>T</span>
+    <span>H</span>
+  </h1>
+</div>
+ 
+
+<body class="min-h-screen none flex-col mb-24 md:min-h-0 md:mb-36">
   <?php require("./components/header.php") ?>
   <div class="top-img" style="width: 100%;">
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
@@ -93,12 +105,12 @@ try {
         <input type="checkbox" class="checkbox" id="plan5" name="plans[]" value="5" />
       </label>
     </div>
-    <div class="flex justify-center mb-4 mt-12">
+    <div class="flex justify-center mb-6 mt-8 md:mb-8 md:mt-12">
       <div class="inline-flex rounded-md shadow-sm" role="group">
-        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-xl lg:text-2xl xl:text-3xl " name='status' value='入室'>
+        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-2xl lg:text-3xl xl:text-4xl " name='status' value='入室'>
           入場
         </button>
-        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-xl lg:text-2xl xl:text-3xl " name="status" value="退室">
+        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-2xl lg:text-3xl xl:text-4xl " name="status" value="退室">
           退場
         </button>
       </div>
@@ -110,7 +122,7 @@ try {
     <!-- ここにalertで誰もいないこと伝えたいな -->
   <?php } else { ?>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 md:text-xl lg:text-2xl ">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" class="px-4 py-3">
@@ -139,7 +151,7 @@ try {
                 <?= $result['user_posse'] . $result['user_grade'] ?>
               </td>
               <td class="px-4 py-4">
-                <div class="text-sm text-gray-500 dark:text-gray-400">
+                <div class="text-sm text-gray-500 dark:text-gray-400 md:text-xl lg:text-2xl ">
                   <?= $result['user_name'] ?>
                 </div>
               </td>
@@ -176,6 +188,32 @@ try {
     }
     lastScrollTop = scrollTop;
   });
+
+  $(window).on('load', function () {
+  const $loader = $('.loader');
+
+  // ローダーを上にスライドして非表示にする
+  setTimeout(function () {
+    $loader.css('transform', 'translateY(-100%)');
+    setTimeout(function () {
+      $loader.css('display', 'none');
+    }, 3000); /// 上にスライドしてから0.5秒後に非表示にする
+  }, 2000); // ローダーを表示してから2秒後に実行する
+});
+
+
+  const CLASSNAME = "-visible";
+  const TIMEOUT = 1500;
+  const $target = $(".title");
+
+  $(window).on('load',function(){
+    $target.addClass(CLASSNAME);
+    setTimeout(() => {
+      $target.removeClass(CLASSNAME);
+    }, 1000);
+  })
+
+ 
 </script>
 </body>
 
