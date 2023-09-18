@@ -207,12 +207,10 @@ try {
 
     // ローダーを上にスライドして非表示にする
     setTimeout(function () {
-      if (sessionStorage.getItem('access')) {
-        $loader.css('transform', 'translateY(-100%)');
-        setTimeout(function () {
-          $loader.css('display', 'none');
-        }, 3000); // 上にスライドしてから0.5秒後に非表示にする
-      }
+      $loader.css('transform', 'translateY(-100%)');
+      setTimeout(function () {
+        $loader.css('display', 'none');
+      }, 3000); // 上にスライドしてから0.5秒後に非表示にする
     }, 2000); // ローダーを表示してから2秒後に実行する
   });
 
