@@ -58,10 +58,10 @@ try {
 
 <div class="loader">
   <h1 class="title">
-    <span>W</span>
-    <span>I</span>
+    <span>F</span>
+    <span>L</span>
+    <span>A</span>
     <span>T</span>
-    <span>H</span>
   </h1>
 </div>
  
