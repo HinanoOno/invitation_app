@@ -64,7 +64,7 @@ try {
     <span>T</span>
   </h1>
 </div>
- 
+
 
 <body class="min-h-screen none flex-col mb-24 md:min-h-0 md:mb-36">
   <?php require("./components/header.php") ?>
@@ -72,11 +72,11 @@ try {
     <img src="./assets/img/harbors_top.jpg" alt="harbor" style="width: 100%; height: auto;">
   </div>
 
-  <div class="font-bold text-gray-800 text-xl mt-6 mb-4 flex justify-center font-cursive md:text-2xl lg:text-3xl xl:text-4xl mt-8">
+  <div class="font-bold text-gray-800 text-xl mb-4 flex justify-center font-cursive md:text-2xl lg:text-3xl xl:text-4xl mt-8">
     Today's Plan
   </div>
 
-  <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto">
+  <form method="POST" action='./assets/php/index.php' class="w-1/2 mx-auto confirm-form">
     <div class="form-control mb-1">
       <label class="label cursor-pointer">
         <span class="border-blue-100 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded md:text-xl lg:text-2xl xl:text-3xl  ">業務</span>
@@ -109,7 +109,7 @@ try {
     </div>
     <div class="flex justify-center mb-6 mt-8 md:mb-8 md:mt-12">
       <div class="inline-flex rounded-md shadow-sm" role="group">
-        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-2xl lg:text-3xl xl:text-4xl " name='status' value='入室'>
+        <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-2xl lg:text-3xl xl:text-4xl entry" name='status' value='入室'>
           入場
         </button>
         <button type="submit" class="px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700 md:text-2xl lg:text-3xl xl:text-4xl " name="status" value="退室">
@@ -172,56 +172,80 @@ try {
   <?php require("./components/footer.php") ?>
 
   <script>
-  let lastScrollTop = 0;
-  const header = document.querySelector('header.relative');
-  console.log(header);
+    let lastScrollTop = 0;
+    const header = document.querySelector('header.relative');
+    console.log(header);
 
-  window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    console.log(scrollTop);
-    if (scrollTop > lastScrollTop){
-       // 下にスクロールしたとき
-       header.style.visibility = "hidden";
-       header.style.opacity = "0";
-    } else {
-       // 上にスクロールしたとき
-       header.style.visibility = "visible";
-       header.style.opacity = "1";
-    }
-    lastScrollTop = scrollTop;
-  });
-
-
-  const CLASSNAME = "-visible";
-  const TIMEOUT = 1500;
-  const $target = $(".title");
- 
-  $(window).on('load', function () {
-    $target.addClass(CLASSNAME);
-    setTimeout(() => {
-      $target.removeClass(CLASSNAME);
-    }, TIMEOUT);
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      console.log(scrollTop);
+      if (scrollTop > lastScrollTop) {
+        // 下にスクロールしたとき
+        header.style.visibility = "hidden";
+        header.style.opacity = "0";
+      } else {
+        // 上にスクロールしたとき
+        header.style.visibility = "visible";
+        header.style.opacity = "1";
+      }
+      lastScrollTop = scrollTop;
+    });
 
 
-    const $loader = $('.loader');
+    const CLASSNAME = "-visible";
+    const TIMEOUT = 1500;
+    const $target = $(".title");
 
-    // ローダーを上にスライドして非表示にする
-    setTimeout(function () {
-      $loader.css('transform', 'translateY(-100%)');
-      setTimeout(function () {
-        $loader.css('display', 'none');
-      }, 3000); // 上にスライドしてから0.5秒後に非表示にする
-    }, 2000); // ローダーを表示してから2秒後に実行する
-  });
-
+    $(window).on('load', function() {
+      $target.addClass(CLASSNAME);
+      setTimeout(() => {
+        $target.removeClass(CLASSNAME);
+      }, TIMEOUT);
 
 
+      const $loader = $('.loader');
 
+      // ローダーを上にスライドして非表示にする
+      setTimeout(function() {
+        $loader.css('transform', 'translateY(-100%)');
+        setTimeout(function() {
+          $loader.css('display', 'none');
+        }, 3000); // 上にスライドしてから0.5秒後に非表示にする
+      }, 2000); // ローダーを表示してから2秒後に実行する
+    });
 
-
-
- 
-</script>
+    // 削除ボタンがクリックされたときの処理
+    document.addEventListener("DOMContentLoaded", function() {
+      // 削除ボタンがクリックされたときの処理
+      document.querySelectorAll('.confirm-form').forEach(form => {
+        form.addEventListener('submit', function(event) {
+          console.log("発火");
+          event.preventDefault(); // デフォルトのフォーム送信をキャンセル
+          // 確認ダイアログを表示し、OKボタンがクリックされた場合に削除処理を実行
+          if (event.submitter.value === '入室') {
+            if(confirm('予定書いた？')) {
+              console.log(event.submitter.value)
+            var button = event.submitter;
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = button.name;
+            input.value = button.value;
+            form.appendChild(input);
+            this.submit(); 
+            }
+          } else if (event.submitter.value === '退室') {
+            var button = event.submitter;
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = button.name;
+            input.value = button.value;
+            form.appendChild(input);
+            this.submit();
+          };
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
