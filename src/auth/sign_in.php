@@ -11,11 +11,16 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link href="../assets/style/reset.css" rel="stylesheet">
+  <link href="../assets/style/index.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
   <link href="../dist/output.css" rel="stylesheet">
 </head>
 
 <body>
+  <header class="footer-item bg-gray-800 py-4 text-white text-center fixed top-0 left-0 w-full z-50">
+    <h1 class="text-3xl font-bold tracking-wider">FLAT</h1>
+  </header>
+
   <main class="w-4/5 m-auto mt-48">
     <h3 class=""></h3>
     <?php if (isset($_SESSION["error_messages"])) { ?>
