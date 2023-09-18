@@ -7,6 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ":email" => $_POST["email"],
   ]);
   $user = $stmt->fetch();
+  if($user === false){
+    session_start();
+    $_SESSION["error_messages"] = ["メールアドレスまたはパスワードが間違っています。"];
+    header("Location: ". "/auth/sign_in.php");
+    exit();
+  }
 
   if(password_verify($_POST["password"], $user["password"])){
     session_start();
