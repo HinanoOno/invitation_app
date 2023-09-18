@@ -193,7 +193,7 @@ try {
 
 
     const CLASSNAME = "-visible";
-    const TIMEOUT = 1500;
+    const TIMEOUT = 1000;
     const $target = $(".title");
 
     $(window).on('load', function() {
