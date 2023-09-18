@@ -1,5 +1,5 @@
 <?php
-  require('../assets/php/auth/sign_up.php');
+require('../assets/php/auth/sign_up.php');
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +15,9 @@
 </head>
 
 <body>
+  <header class="footer-item bg-gray-800 py-4 text-white text-center fixed top-0 left-0 w-full z-50">
+    <h1 class="text-3xl font-bold tracking-wider z-0">FLAT</h1>
+  </header>
   <main class="w-4/5 m-auto mt-48">
     <h3 class=""></h3>
     <form method="post" action="./../assets/php/auth/sign_up.php" enctype="multipart/form-data">
