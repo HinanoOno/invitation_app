@@ -216,13 +216,21 @@ try {
     }, 2000); // ローダーを表示してから2秒後に実行する
   });
 
+  // 削除ボタンがクリックされたときの処理
+  document.addEventListener("DOMContentLoaded", function() {
+            // 削除ボタンがクリックされたときの処理
+            document.querySelectorAll('.confirm-form').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    console.log("発火");
+                    event.preventDefault(); // デフォルトのフォーム送信をキャンセル
+                    // 確認ダイアログを表示し、OKボタンがクリックされた場合に削除処理を実行
+                    if (confirm('本当に削除しますか？')) {
+                        this.submit(); // フォームを送信
+                    }
+                });
+            });
+        });
 
-
-
-
-
-
- 
 </script>
 </body>
 
