@@ -118,6 +118,9 @@ CREATE TABLE userDetail_plan (
     FOREIGN KEY (userDetail_id) REFERENCES user_details(id),
     FOREIGN KEY (plan_id) REFERENCES plans(id)
 );
+INSERT INTO userDetail_plan (userDetail_id,plan_id,status) VALUES (7,3,1),(2,1,1),(3,2,1),(4,4,1),(5,5,1);
+
+
 
 DROP TABLE IF EXISTS calendar_plan;
 CREATE TABLE calendar_plan (
