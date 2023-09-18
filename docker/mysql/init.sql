@@ -113,7 +113,7 @@ DROP TABLE IF EXISTS userDetail_plan;
 CREATE TABLE userDetail_plan (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userDetail_id INT NOT NULL,
-    plan_id INT NOT NULL,
+    plan_id INT ,
     status BOOLEAN NOT NULL,
     FOREIGN KEY (userDetail_id) REFERENCES user_details(id),
     FOREIGN KEY (plan_id) REFERENCES plans(id)

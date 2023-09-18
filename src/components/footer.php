@@ -3,13 +3,13 @@
     <div class="border-r border-white h-20 w-1/2 flex flex-col items-center justify-center">
       <a href="./../index.php" class="flex flex-col items-center justify-center">
           <i class="fas fa-home text-4xl"></i>
-          <span class="text-xl">Home</span>
+          <span class="text-xl footer-item">Home</span>
       </a>
     </div>
     <div class="border-l border-white h-20 w-1/2 flex flex-col items-center justify-center">
       <a href="./../calendar/calendar.php" class="flex flex-col items-center justify-center">
           <i class="far fa-calendar-alt text-4xl"></i>
-          <span class="text-xl">Calendar</span>
+          <span class="text-xl footer-item">Calendar</span>
       </a>
     </div>
   </div>

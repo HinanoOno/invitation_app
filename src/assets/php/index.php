@@ -12,15 +12,25 @@
       $status = 1;
       try {
         $dbh->beginTransaction();
-
-        foreach ($selectedValues as $value) {
-            $sql = "INSERT INTO userDetail_plan (userDetail_id, plan_id, status) VALUES (:userDetail_id, :plan_id, :status)";
+        if(isset($selectedValues)){
+            foreach ($selectedValues as $value) {
+                $sql = "INSERT INTO userDetail_plan (userDetail_id, plan_id, status) VALUES (:userDetail_id, :plan_id, :status)";
+                $stmt = $dbh->prepare($sql);
+                $stmt->execute([
+                    "userDetail_id" => $_SESSION['id'],
+                    "plan_id" => $value,
+                    "status" => $status
+                ]);
+            }
+        }else{
+            $sql = "INSERT INTO userDetail_plan (userDetail_id,  status) VALUES (:userDetail_id,  :status)";
             $stmt = $dbh->prepare($sql);
             $stmt->execute([
                 "userDetail_id" => $_SESSION['id'],
-                "plan_id" => $value,
+             
                 "status" => $status
             ]);
+
         }
         $sql = "SELECT name FROM user_details WHERE id = :userID";
         $stmt = $dbh->prepare($sql);
