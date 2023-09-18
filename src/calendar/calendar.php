@@ -157,10 +157,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <form class="shadow w-full rounded-lg bg-white overflow-hidden block p-8" method="post" action="../assets/php/calendar/calendar.php">
 
-              <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Add Event Details</h2>
+              <h2 class=" text-2xl mb-6 border-b pb-2 font-medium text-gray-900">予定登録</h2>
 
               <div class="mb-4">
-                <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Event date</label>
+                <label class="block mb-1 tracking-wide text-sm font-medium text-gray-900">日時</label>
                 <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_date" readonly name="event_date">
               </div>
 
@@ -237,7 +237,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </div>
 
               <div class="inline-block w-64 mb-4">
-                <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Select a theme</label>
+                <label class=" block mb-1  tracking-wide　text-sm font-medium text-gray-900">何するの？</label>
                 <div class="relative">
                   <select @change="event_theme = $event.target.value;" x-model="event_theme" class="block appearance-none w-full bg-gray-200 border-2 border-gray-200 hover:border-gray-500 px-4 py-2 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-blue-500 text-gray-700" name="plan">
                     <template x-for="(theme, index) in themes">
@@ -255,7 +255,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
               <div class="inline-block w-64 mb-4">
                 <div class="relative">
-                  <label for="countries_multiple" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                  <label for="countries_multiple" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">リクエスト</label>
                   <select multiple id="countries_multiple" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="name[]">
                     <?php foreach ($users as $user) : ?>
                       <option value="<?php echo $user['name']; ?>"><?php echo $user['name']; ?></option>
@@ -271,10 +271,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
               <div class="mt-8 text-right">
                 <button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
-                  Cancel
+                  キャンセル
                 </button>
                 <button type="submit" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
-                  Save Event
+                  登録
                 </button>
               </div>
             </form>
