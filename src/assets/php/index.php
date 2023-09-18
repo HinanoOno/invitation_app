@@ -23,11 +23,11 @@
                 ]);
             }
         }else{
-            $sql = "INSERT INTO userDetail_plan (userDetail_id, plan_id, status) VALUES (:userDetail_id, :plan_id, :status)";
+            $sql = "INSERT INTO userDetail_plan (userDetail_id,  status) VALUES (:userDetail_id,  :status)";
             $stmt = $dbh->prepare($sql);
             $stmt->execute([
                 "userDetail_id" => $_SESSION['id'],
-                "plan_id" => '',
+             
                 "status" => $status
             ]);
 
